@@ -51,6 +51,15 @@ resource "aws_autoscaling_group" "example" {
     id      = aws_launch_template.example.id
     version = "$Latest"
   }
+  
+  dynamic "tag" {
+    for_each = data.aws_default_tags.current.tags
+    content {
+      key                 = tag.key
+      value               = tag.value
+      propagate_at_launch = true
+    }
+  }
 }
 
 data "aws_default_tags" "current" {}
