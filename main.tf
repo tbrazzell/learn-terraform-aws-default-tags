@@ -52,3 +52,5 @@ resource "aws_autoscaling_group" "example" {
     version = "$Latest"
   }
 }
+
+data "aws_default_tags" "current" {}
